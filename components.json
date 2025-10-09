@@ -4,18 +4,18 @@
   "rsc": true,
   "tsx": true,
   "tailwind": {
-		"config": "", // Path to tailwind.config.js (auto-detected if empty)
-		"css": "app/globals.css", // Main CSS file location
-		"baseColor": "neutral", // Default color palette
-		"cssVariables": true, // Use CSS custom properties
-		"prefix": "" // No prefix for Tailwind classes
-	},
+    "config": "",
+    "css": "app/globals.css",
+    "baseColor": "neutral",
+    "cssVariables": true,
+    "prefix": ""
+  },
   "aliases": {
-		"components": "@/components", // Maps to ./components/
-		"utils": "@/lib/utils", // Maps to ./lib/utils
-		"ui": "@/components/ui", // Maps to ./components/ui/
-		"lib": "@/lib", // Maps to ./lib/
-		"hooks": "@/hooks" // Maps to ./hooks/
-	},
+    "components": "@/components",
+    "utils": "@/lib/utils",
+    "ui": "@/components/ui",
+    "lib": "@/lib",
+    "hooks": "@/hooks"
+  },
   "iconLibrary": "lucide"
 }
