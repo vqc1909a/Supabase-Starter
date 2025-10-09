@@ -2,6 +2,49 @@ import * as React from "react";
 
 import { cn } from "@/lib/utils";
 
+// EXAMPLE 1
+//  ✅ With forwardRef - ref works properly
+// const Input = React.forwardRef<
+//   HTMLInputElement,
+//   React.HTMLAttributes<HTMLInputElement>
+// >(({ className, ...props }, ref) => (
+//   <input 
+//     ref={ref}
+//     className={cn("border rounded", className)} 
+//     {...props} 
+//   />
+// ));
+
+//  Usage - ref works
+// const MyForm = () => {
+//   const inputRef = useRef<HTMLInputElement>(null);
+  
+//   const focusInput = () => {
+//     inputRef.current?.focus(); // ✅ Works!
+//   };
+  
+//   return <Input ref={inputRef} />; // ✅ Works!
+// };
+
+// EXAMPLE 2
+// Why Card uses forwardRef:
+// const Card = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>(
+//   ({ className, ...props }, ref) => (
+//     <div ref={ref} className={cn("rounded-xl border", className)} {...props} />
+//   )
+// );
+
+// So users can do this:
+// const MyComponent = () => {
+//   const cardRef = useRef<HTMLDivElement>(null);
+  
+//   const scrollToCard = () => {
+//     cardRef.current?.scrollIntoView(); // ✅ Works because of forwardRef
+//   };
+  
+//   return <Card ref={cardRef}>Content</Card>;
+// };
+
 const Card = React.forwardRef<
   HTMLDivElement,
   React.HTMLAttributes<HTMLDivElement>
