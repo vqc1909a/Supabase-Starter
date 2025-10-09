@@ -28,9 +28,6 @@ export default async function Page() {
 
 
   if(error){
-    console.log({
-      error, 
-    })
     throw new Error(error.message); 
   }
 	return <pre>{JSON.stringify(notes, null, 2)}</pre>;

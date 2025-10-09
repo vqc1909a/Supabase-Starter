@@ -7,7 +7,7 @@ export async function AuthButton() {
   const supabase = await createClient();
 
   // In summary, use getUser() for user data and getClaims() for authorization logic!
-  const { data, error } = await supabase.auth.getClaims()
+  const { data } = await supabase.auth.getClaims()
 
   const user = data?.claims;
 
