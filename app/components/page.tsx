@@ -13,6 +13,11 @@ import { Checkbox } from '@/components/ui/checkbox';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
 import { hasEnvVars } from '@/lib/utils';
 import Link from 'next/link';
+
+
+// Add this line to force dynamic rendering
+export const dynamic = 'force-dynamic'
+
 export default async function Components(){
   return (
 		<div className="min-h-screen flex flex-col items-center">
@@ -65,49 +70,57 @@ export default async function Components(){
 					</DropdownMenu>
 				</li>
 
-				<li>
-					<h6 className="font-medium mb-4 text-lg">
-						<b>Code Block:</b> /components/tutorial/code-block.tsx
-					</h6>
-					<CodeBlock code={`npm install @nextui-org/react`} />
-				</li>
-				<li>
-					<h6 className="font-medium mb-4 text-lg">
-						<b>Connect Supabase Steps:</b>{" "}
-						/components/tutorial/connect-supabase-steps.tsx
-					</h6>
-					<ConnectSupabaseSteps />
-				</li>
-				<li>
-					<h6 className="font-medium mb-4 text-lg">
-						<b>Fetch Data Steps:</b> /components/tutorial/fetch-data-steps.tsx
-					</h6>
-					<FetchDataSteps />
-				</li>
-				<li>
-					<h6 className="font-medium mb-4 text-lg">
-						<b>Sign up user steps:</b>{" "}
-						/components/tutorial/sign-up-user-steps.tsx
-					</h6>
-					<SignUpUserSteps />
-				</li>
-				<li>
-					<h6 className="font-medium mb-4 text-lg">
-						<b>Tutorial step:</b> /components/tutorial/tutorial-step.tsx
-					</h6>
-					<ul>
-						<TutorialStep title="Sign up user">
-							<p>Sign up user description</p>
-							<CodeBlock code={`npm install @nextui-org/react`} />
-						</TutorialStep>
-					</ul>
-				</li>
-				<li>
-					<h6 className="font-medium mb-4 text-lg">
-						<b>Realtime Chat:</b> /components/realtime-chat.tsx
-					</h6>
-					<RealtimeChat roomName="general" username="vqc1909a" />
-				</li>
+				{
+					hasEnvVars  ? (
+						<>
+							<li>
+								<h6 className="font-medium mb-4 text-lg">
+									<b>Code Block:</b> /components/tutorial/code-block.tsx
+								</h6>
+								<CodeBlock code={`npm install @nextui-org/react`} />
+							</li>
+							<li>
+								<h6 className="font-medium mb-4 text-lg">
+									<b>Connect Supabase Steps:</b>{" "}
+									/components/tutorial/connect-supabase-steps.tsx
+								</h6>
+								<ConnectSupabaseSteps />
+							</li>
+							<li>
+								<h6 className="font-medium mb-4 text-lg">
+									<b>Fetch Data Steps:</b> /components/tutorial/fetch-data-steps.tsx
+								</h6>
+								<FetchDataSteps />
+							</li>
+							<li>
+								<h6 className="font-medium mb-4 text-lg">
+									<b>Sign up user steps:</b>{" "}
+									/components/tutorial/sign-up-user-steps.tsx
+								</h6>
+								<SignUpUserSteps />
+							</li>
+							<li>
+								<h6 className="font-medium mb-4 text-lg">
+									<b>Tutorial step:</b> /components/tutorial/tutorial-step.tsx
+								</h6>
+								<ul>
+									<TutorialStep title="Sign up user">
+										<p>Sign up user description</p>
+										<CodeBlock code={`npm install @nextui-org/react`} />
+									</TutorialStep>
+								</ul>
+							</li>
+							<li>
+								<h6 className="font-medium mb-4 text-lg">
+									<b>Realtime Chat:</b> /components/realtime-chat.tsx
+								</h6>
+								<RealtimeChat roomName="general" username="vqc1909a" />
+							</li>
+						</>
+					)
+					:
+					null
+				}
 			</ul>
 		</div>
 	);
