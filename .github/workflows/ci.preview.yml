@@ -14,7 +14,7 @@ on:
       - 'tsconfig.json'        # TypeScript config
       - 'tailwind.config.ts'   # Tailwind config
       - '.github/workflows/**' # CI changes
-      
+
   pull_request:
     branches: [ preview ]
     paths: 
@@ -50,6 +50,31 @@ jobs:
 
       - run: pnpm lint
 
+      # Debug environment variables
+      - name: Check Supabase Environment Variables
+        run: |
+          echo "🔍 Checking Supabase environment variables..."
+          if [ -n "$NEXT_PUBLIC_SUPABASE_URL" ]; then
+            echo "✅ NEXT_PUBLIC_SUPABASE_URL is set"
+            echo "URL starts with: ${NEXT_PUBLIC_SUPABASE_URL:0:20}..."
+          else
+            echo "❌ NEXT_PUBLIC_SUPABASE_URL is NOT set"
+            echo "Available env vars:"
+            env | grep -E "NEXT_PUBLIC|SUPABASE" || echo "No Supabase env vars found"
+            exit 1
+          fi
+          
+          if [ -n "$NEXT_PUBLIC_SUPABASE_PUBLISHABLE_OR_ANON_KEY" ]; then
+            echo "✅ NEXT_PUBLIC_SUPABASE_PUBLISHABLE_OR_ANON_KEY is set"
+            echo "Key starts with: ${NEXT_PUBLIC_SUPABASE_PUBLISHABLE_OR_ANON_KEY:0:20}..."
+          else
+            echo "❌ NEXT_PUBLIC_SUPABASE_PUBLISHABLE_OR_ANON_KEY is NOT set"
+            exit 1
+          fi
+        env:
+          NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.NEXT_PUBLIC_SUPABASE_URL }}
+          NEXT_PUBLIC_SUPABASE_PUBLISHABLE_OR_ANON_KEY: ${{ secrets.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_OR_ANON_KEY }}
+          
       - run: pnpm build
         env:
           NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.NEXT_PUBLIC_SUPABASE_URL }}
