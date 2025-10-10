@@ -15,9 +15,6 @@ import { hasEnvVars } from '@/lib/utils';
 import Link from 'next/link';
 
 
-// Add this line to force dynamic rendering
-export const dynamic = 'force-dynamic'
-
 export default async function Components(){
   return (
 		<div className="min-h-screen flex flex-col items-center">
