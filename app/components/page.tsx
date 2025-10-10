@@ -15,8 +15,6 @@ import { hasEnvVars } from '@/lib/utils';
 import Link from 'next/link';
 
 
-// Add this line to force dynamic rendering
-
 export default async function Components(){
   return (
 		<div className="min-h-screen flex flex-col items-center">
@@ -68,7 +66,10 @@ export default async function Components(){
 						</DropdownMenuContent>
 					</DropdownMenu>
 				</li>
-				<>		
+
+				{
+					hasEnvVars  ? (
+						<>
 							<li>
 								<h6 className="font-medium mb-4 text-lg">
 									<b>Code Block:</b> /components/tutorial/code-block.tsx
@@ -113,6 +114,10 @@ export default async function Components(){
 								<RealtimeChat roomName="general" username="vqc1909a" />
 							</li>
 						</>
+					)
+					:
+					null
+				}
 			</ul>
 		</div>
 	);
