@@ -67,9 +67,7 @@ export default async function Components(){
 					</DropdownMenu>
 				</li>
 
-				{
-					hasEnvVars  ? (
-						<>
+				<>
 							<li>
 								<h6 className="font-medium mb-4 text-lg">
 									<b>Code Block:</b> /components/tutorial/code-block.tsx
@@ -114,10 +112,7 @@ export default async function Components(){
 								<RealtimeChat roomName="general" username="vqc1909a" />
 							</li>
 						</>
-					)
-					:
-					null
-				}
+					
 			</ul>
 		</div>
 	);
