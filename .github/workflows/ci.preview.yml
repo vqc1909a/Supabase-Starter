@@ -57,3 +57,9 @@ jobs:
 
       - run: echo "✅ Build successful"
         if: github.ref == 'refs/heads/preview'
+
+      - name: 'Notify Vercel - CI Passed'
+        uses: 'vercel/repository-dispatch/actions/status@v1'
+        with:
+          name: 'Vercel - supabase-starter: ci-complete'
+        if: success()
