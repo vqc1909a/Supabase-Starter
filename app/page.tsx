@@ -6,8 +6,16 @@ import { ConnectSupabaseSteps } from "@/components/tutorial/connect-supabase-ste
 import { SignUpUserSteps } from "@/components/tutorial/sign-up-user-steps";
 import { hasEnvVars } from "@/lib/utils";
 import Link from "next/link";
+// import { cookies } from "next/headers";
+// import { createClient } from "@/lib/supabase/server";
 
-export default function Home() {
+export default async function Home() {
+	// const cookieStore = await cookies();
+	// const supabase = createClient(cookieStore);
+
+	// const {data: todos} =  await supabase.from('todos').select();
+	
+
   return (
 		<main className="min-h-screen flex flex-col items-center">
 			<div className="flex-1 w-full flex flex-col gap-20 items-center">
@@ -15,7 +23,8 @@ export default function Home() {
 					<div className="w-full max-w-5xl flex justify-between items-center p-3 px-5 text-sm">
 						<div className="flex gap-5 items-center font-semibold">
 							<Link href={"/"}>Next.js Supabase Starter</Link>
-              <Link href={"/components"}>Components</Link>
+							<Link href={"/components"}>Components</Link>
+							<Link href={"/notes"}>Notes</Link>
 						</div>
 						{!hasEnvVars ? <EnvVarWarning /> : <AuthButton />}
 					</div>

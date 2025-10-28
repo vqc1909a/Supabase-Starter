@@ -17,6 +17,7 @@ export default function ProtectedLayout({
 						<div className="flex gap-5 items-center font-semibold">
 							<Link href={"/"}>Next.js Supabase Starter</Link>
 							<Link href={"/components"}>Components</Link>
+							<Link href={"/notes"}>Notes</Link>
 						</div>
 						{!hasEnvVars ? <EnvVarWarning /> : <AuthButton />}
 					</div>

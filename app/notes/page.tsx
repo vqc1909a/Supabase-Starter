@@ -30,5 +30,8 @@ export default async function Page() {
   if(error){
     throw new Error(error.message); 
   }
+  if(!notes.length){
+    return <p>No notes found</p>;
+  }
 	return <pre>{JSON.stringify(notes, null, 2)}</pre>;
 }

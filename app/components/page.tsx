@@ -26,6 +26,7 @@ export default async function Components(){
 							<DeployButton />
 						</div>
 						<Link href={"/components"}>Components</Link>
+						<Link href={"/notes"}>Notes</Link>
 					</div>
 					{!hasEnvVars ? <EnvVarWarning /> : <AuthButton />}
 				</div>

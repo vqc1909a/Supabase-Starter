@@ -41,31 +41,32 @@ export function SignUpForm({
     }
 
     try {
-      const { error } = await supabase.auth.signUp({
-        email,
-        password,
-        options: {
-          // where to redirect the user after they click the confirmation link in their email. Let me break this down:
-          // 1. User fills out sign-up form and submits
-          //           ↓
-          // 2. Supabase sends confirmation email to user
-          //                     ↓
-          // 3. User clicks link in email
-          //                     ↓
-          // 4. User is redirected to `/protected` page (emailRedirectTo)
-          //                     ↓
-          // 5. User is redirected to the login page
-          //                     ↓
-          // 6. User logs in and accesses protected content
-          //
-          // Note: You need to handle the redirect in your app. Supabase won't do it for you.
-          //
-          // Also, make sure to add the redirect URL to the "Site URL" and "Additional Redirect URLs"
-          // in your Supabase Auth settings, otherwise the link in the email won't work.
-          emailRedirectTo: `${window.location.origin}/protected`,
-          
-        },
-      });
+      const {error} = await supabase.auth.signUp({
+				email,
+				password,
+				options: {
+					// where to redirect the user after they click the confirmation link in their email. Let me break this down:
+					// 1. User fills out sign-up form and submits
+					//                     ↓
+					// 2. You will be redirected to the sign-up success page
+					//                     ↓
+					// 3. Supabase sends confirmation email to user
+					//                     ↓
+					// 4. User clicks link in email
+					//                     ↓
+					// 5. User is redirected to `/protected` page (emailRedirectTo) due to the last line below
+					//                     ↓
+					// 6. User is redirected to the login page
+					//                     ↓
+					// 7. User logs in and accesses protected content
+					//
+					// Note: You need to handle the redirect in your app. Supabase won't do it for you.
+					//
+					// Also, make sure to add the below redirect URL to the "URL Configuration" option (https://supabase.com/dashboard/project/id_project/auth/url-configuration)
+					// in your Supabase Url Configuration, otherwise the redirect to the link in the email won't work.
+					emailRedirectTo: `${window.location.origin}/protected`,
+				},
+			});
       if (error) throw error;
       router.push("/auth/sign-up-success");
     } catch (error: unknown) {
