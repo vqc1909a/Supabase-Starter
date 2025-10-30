@@ -237,6 +237,8 @@ To change any setting:
 1. **Edit `components.json`**
 2. **Regenerate components**: `npx shadcn@latest add button --overwrite`
 3. **Or initialize fresh**: `npx shadcn@latest init`
+4. **Add more components**: `pnpm dlx shadcn@latest add [component-name]`
+5. **Add third-party components**: `pnpm dlx shadcn@latest add [third-party-component-name]` => `pnpm dlx shadcn@latest add @supabase/supabase-client-nextjs`
 
 ## 📚 Related Files
 
