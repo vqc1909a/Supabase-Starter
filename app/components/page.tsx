@@ -39,7 +39,7 @@ export default async function Components(){
 					<h6 className="font-medium mb-4 text-lg">
 						<b>Badge:</b> /components/ui/badge.tsx
 					</h6>
-					<Badge>New</Badge>
+					<Badge variant="secondary">New</Badge>
 				</li>
 				<li>
 					<h6 className="font-medium mb-4 text-lg">
