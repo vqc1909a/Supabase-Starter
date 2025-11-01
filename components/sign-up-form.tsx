@@ -20,6 +20,7 @@ export function SignUpForm({
   className,
   ...props
 }: React.ComponentPropsWithoutRef<"div">) {
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [repeatPassword, setRepeatPassword] = useState("");
@@ -29,6 +30,7 @@ export function SignUpForm({
   const router = useRouter();
 
   const handleSignUp = async (e: React.FormEvent) => {
+
     e.preventDefault();
     const supabase = createClient();
     setIsLoading(true);
