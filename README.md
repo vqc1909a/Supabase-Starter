@@ -17,6 +17,47 @@
 </p>
 <br/>
 
+## Standalone Output Mode
+When you build your Next.js app with this setting, it creates a self-contained version that can run independently without needing the original project structure.
+
+1. Creates .next/standalone/ directory with:
+  * server.js - A minimal Node.js server
+  * package.json - Only the dependencies actually needed
+  * node_modules - Only the packages your app uses
+  * Your compiled application code
+
+2. Benefits:
+  * Smaller deployments - Only includes what's needed
+  * Docker-friendly - Perfect for containerization
+  * Serverless-ready - Minimal bundle size
+  * Self-contained - Runs without the original project
+
+3. How to use the standalone build:
+    ```javascript
+      # After building
+      cd .next/standalone
+      node server.js
+    ```
+4. Perfect for:
+  * Docker containers
+  * Cloud deployments (AWS, Google Cloud, etc.)
+  * Serverless functions
+  * Production environments where you want minimal footprint
+
+5. Comparison Example:
+    | Feature | Without Standalone | With Standalone |
+    |---------|--------------------|-----------------|
+    | Size    | ~500MB+ deployment  | ~50-100MB deployment |
+    | Speed   | Entire project + node_modules | Only .next/standalone |
+    | Flexibility | Complex Docker setup | Simple Docker setup |
+    | Dependencies | All dependencies | Only used dependencies |
+
+Important notes:
+* You still need to manually copy static assets (public/folder and static)
+* This is the most efficient way to deploy Next.js apps in production
+* Much smaller than deploying the entire project with all dev dependencies
+
+**NOTE: This setting essentially prepares your app for production deployment with maximum efficiency!**
 ## Features
 
 - Works across the entire [Next.js](https://nextjs.org) stack

@@ -11,6 +11,7 @@ import { type NextRequest } from "next/server";
 // * Delegation: Passes all logic to updateSession function
 // * Return: Returns response from updateSession
 export async function middleware(request: NextRequest) {
+  // return NextResponse.next();
   return await updateSession(request);
 }
 

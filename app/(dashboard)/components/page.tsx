@@ -1,6 +1,6 @@
 import { AuthButton } from '@/components/auth-button';
-import { DeployButton } from '@/components/deploy-button';
 import { EnvVarWarning } from '@/components/env-var-warning';
+import { Nav } from '@/components/nav';
 import { RealtimeChat } from '@/components/realtime-chat';
 import { CodeBlock } from '@/components/tutorial/code-block';
 import { ConnectSupabaseSteps } from '@/components/tutorial/connect-supabase-steps';
@@ -12,21 +12,13 @@ import { Button } from '@/components/ui/button';
 import { Checkbox } from '@/components/ui/checkbox';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
 import { hasEnvVars } from '@/lib/utils';
-import Link from 'next/link';
-
 
 export default async function Components(){
   return (
 		<div className="min-h-screen flex flex-col items-center">
 			<nav className="w-full flex justify-center border-b border-b-foreground/10 h-16">
 				<div className="w-full max-w-5xl flex justify-between items-center p-3 px-5 text-sm">
-					<div className="flex gap-5 items-center font-semibold">
-						<Link href={"/"}>Next.js Supabase Starter</Link>
-						<div className="flex items-center gap-2">
-							<DeployButton />
-						</div>
-						<Link href={"/components"}>Components</Link>
-					</div>
+					<Nav />
 					{!hasEnvVars ? <EnvVarWarning /> : <AuthButton />}
 				</div>
 			</nav>
@@ -38,7 +30,7 @@ export default async function Components(){
 					<h6 className="font-medium mb-4 text-lg">
 						<b>Badge:</b> /components/ui/badge.tsx
 					</h6>
-					<Badge>New</Badge>
+					<Badge variant="secondary">New</Badge>
 				</li>
 				<li>
 					<h6 className="font-medium mb-4 text-lg">

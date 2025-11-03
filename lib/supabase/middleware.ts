@@ -1,23 +1,23 @@
 import { createServerClient } from "@supabase/ssr";
 import { NextResponse, type NextRequest } from "next/server";
 
+const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_OR_ANON_KEY;
+
 export async function updateSession(request: NextRequest) {
-	// 1. Initial response with original request (supabaseResponse: RESPONSE COOKIES)
+	// 1. Initial response with original request
+	// return NextResponse.redirect(new URL('/login', request.url));
 	let supabaseResponse = NextResponse.next({
-		// or NextResponse.redirect({request})
 		request,
 	});
 
 	// With Fluid compute, don't put this client in a global environment
 	// variable. Always create a new one on each request.
-	const supabase = createServerClient(
-		process.env.NEXT_PUBLIC_SUPABASE_URL!,
-		process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_OR_ANON_KEY!,
-		{
-			cookies: {
-				// 2. Supabase reads existing cookies
-				getAll() {
-					return request.cookies.getAll(); // Gets auth tokens
+	const supabase = createServerClient(supabaseUrl!, supabaseKey!, {
+		cookies: {
+			// 2. Supabase reads existing cookies
+			getAll() {
+				return request.cookies.getAll(); // Gets auth tokens
 				},
 				// 3. Supabase potentially refreshes tokens and sets new cookies
 				setAll(cookiesToSet) {
@@ -63,6 +63,7 @@ export async function updateSession(request: NextRequest) {
 	if (
 		request.nextUrl.pathname !== "/" &&
 		!request.nextUrl.pathname.startsWith("/auth") &&
+		!request.nextUrl.pathname.startsWith("/api") &&
 		!user
 	) {
 		// no user, potentially respond by redirecting the user to the login page
