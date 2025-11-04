@@ -29,14 +29,11 @@ export default async function Page() {
   if (errorAuth || !auth?.claims) {
 		redirect("/auth/login");
 	}
-  console.log({
-    auth
-  })
 
   const {data: notes, error} = await supabase.from("notes").select().eq("user_id", auth.claims.sub);
 
   if(error){
-    throw new Error(error.message); 
+    throw new Error(error.message);
   }
   if(!notes.length){
     return <p>No notes found</p>;
