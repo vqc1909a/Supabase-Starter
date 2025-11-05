@@ -30,6 +30,13 @@ export default async function Page() {
 		redirect("/auth/login");
 	}
 
+  // const {
+	// 	data: {session},
+	// } = await supabase.auth.getSession();
+  // console.log("Your session:" , session);
+	// console.log("Your access token:", session?.access_token);
+	// console.log("Your user ID:", session?.user?.id);
+
   const {data: notes, error} = await supabase.from("notes").select().eq("user_id", auth.claims.sub);
 
   if(error){
