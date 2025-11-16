@@ -4,11 +4,14 @@
 
 // Setup type definitions for built-in Supabase Runtime APIs
 import "jsr:@supabase/functions-js/edge-runtime.d.ts"
+interface reqPayload {
+  name: string;
+}
 
 console.log("Hello from Functions!")
 
-Deno.serve(async (req) => {
-  const { name } = await req.json()
+Deno.serve(async (req: Request) => {
+  const { name }: reqPayload = await req.json()
   const data = {
     message: `Hello ${name}!`,
   }
